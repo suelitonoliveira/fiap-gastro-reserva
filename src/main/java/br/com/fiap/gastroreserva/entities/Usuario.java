@@ -1,12 +1,20 @@
 package br.com.fiap.gastroreserva.entities;
 
 import br.com.fiap.gastroreserva.enums.TipoUsuario;
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 
 
 @Entity
@@ -40,6 +48,6 @@ public class Usuario extends Auditoria {
     @Column(name = "ENDERECO", nullable = false)
     private String endereco;
 
-    @OneToOne(mappedBy = "usuario")
+    @OneToOne(cascade = CascadeType.ALL)
     private TermoAceite termoAceite;
 }
