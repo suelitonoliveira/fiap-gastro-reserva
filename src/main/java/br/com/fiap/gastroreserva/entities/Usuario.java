@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Usuario extends Auditoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
