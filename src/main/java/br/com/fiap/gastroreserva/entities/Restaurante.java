@@ -8,8 +8,10 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Inheritance
-@Builder
+
+
+@Builder(builderMethodName = "restauranteBuilder")
+
 @Entity
 @Table(name = "tb_restaurante")
 @Data
