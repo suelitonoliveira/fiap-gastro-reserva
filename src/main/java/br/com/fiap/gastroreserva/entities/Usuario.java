@@ -8,7 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-
+@Inheritance
 @Entity
 @Table(name = "tb_usuario")
 @Data
