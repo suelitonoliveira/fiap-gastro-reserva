@@ -1,2 +1,4 @@
-insert into TB_USUARIO (DATA_DE_INCLUSAO, DATA_DE_ALTERACAO, TIPO_USUARIO, DOCUMENTO, NOME, SENHA, EMAIL, ENDERECO)
-VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'CLIENTE', '61809159032', 'teste', 'teste','teste@email.com.br','QD 18/19');
+insert into TB_TERMO_ACEITE (DATA_DE_INCLUSAO, DATA_DE_ALTERACAO, DESCRICAO)
+VALUES (CURRENT_TIMESTAMP, null,
+        'Eu entendo e concordo que as informações fornecidas podem ser transferidas para terceiros, incluindo prestadores de serviços, afiliados e parceiros comerciais da empresa Gastro Reserva, conforme necessário para cumprir as finalidades descritas neste termo. ');
+
