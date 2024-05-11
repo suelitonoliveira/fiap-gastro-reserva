@@ -22,10 +22,10 @@ public class Restaurante  {
     private Long id;
 
     @Column(name = "QTD_CADEIRA")
-    @OneToMany
+    @OneToMany(mappedBy = "restaurante", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Mesa> mesa;
 
     @Column(name = "COD_RESTAURANTE")
-    @OneToMany
+    @OneToMany(mappedBy = "restaurante", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Reserva> reserva;
 }
