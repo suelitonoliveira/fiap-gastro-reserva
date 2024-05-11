@@ -8,21 +8,24 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+@Inheritance
 @Builder
 @Entity
 @Table(name = "tb_restaurante")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Restaurante extends Usuario {
+public class Restaurante  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "COD")
     private Long id;
 
+    @Column(name = "QTD_CADEIRA")
     @OneToMany
     private List<Mesa> mesa;
 
+    @Column(name = "COD_RESTAURANTE")
     @OneToMany
     private List<Reserva> reserva;
 }
