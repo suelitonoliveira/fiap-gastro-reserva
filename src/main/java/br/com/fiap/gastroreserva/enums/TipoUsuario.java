@@ -1,5 +1,5 @@
 package br.com.fiap.gastroreserva.enums;
 
 public enum TipoUsuario {
-    CLIENTE,FUNCIONARIO,EMPRESA
+    CLIENTE,FUNCIONARIO
 }
