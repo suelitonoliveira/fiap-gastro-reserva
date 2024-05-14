@@ -1,11 +1,16 @@
 package br.com.fiap.gastroreserva.services;
 
+import br.com.fiap.gastroreserva.dto.MesaDTO;
+import br.com.fiap.gastroreserva.dto.RestauranteDTO;
+import br.com.fiap.gastroreserva.entities.Mesa;
 import br.com.fiap.gastroreserva.entities.Restaurante;
 import br.com.fiap.gastroreserva.repository.RestauranteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,33 +19,44 @@ public class RestauranteService {
     @Autowired
     private RestauranteRepository restauranteRepository;
 
-    public Collection<Restaurante> findAll() {
-        var restaurante = restauranteRepository.findAll();
-        return restaurante;
+    @Autowired
+    public RestauranteService(RestauranteRepository restauranteRepository) {
+        this.restauranteRepository = restauranteRepository;
     }
 
-    public Optional<Restaurante> findById(Long id){
-        var restaurante = restauranteRepository.findById(id);
-        return restaurante;
-    }
 
-    public Restaurante save(Restaurante restaurante){
+    public RestauranteDTO save(RestauranteDTO restauranteDTO){
+        Restaurante restaurante = convertToEntity(restauranteDTO);
         restaurante = restauranteRepository.save(restaurante);
+        return convertToDTO(restaurante);
+    }
+
+    private Restaurante convertToEntity(RestauranteDTO dto) {
+        Restaurante restaurante = new Restaurante();
+        restaurante.setId(dto.getId());
+        restaurante.setNome(dto.getNome());
+
+        List<Mesa> mesas = new ArrayList<>();
+        for (MesaDTO mesaDTO : dto.getMesas()) {
+            mesas.add(convertToEntity(mesaDTO));
+        }
+        restaurante.setMesas(mesas);
         return restaurante;
     }
 
-    public Restaurante update(Long id, Restaurante restaurante){
-        Restaurante buscaRestaurante = restauranteRepository.getOne(id);
-        buscaRestaurante.setNome(restaurante.getNome());
-        buscaRestaurante.setMesas(restaurante.getMesas());
-
-        //feitos os setter, o valor esta atualizado
-        buscaRestaurante = restauranteRepository.save(buscaRestaurante);
-        return buscaRestaurante;
-
+    private Mesa convertToEntity(MesaDTO dto) {
+        Mesa mesa = new Mesa();
+        mesa.setId(dto.getCod());
+        mesa.setQtdCadeira(dto.getQtdCadeira());
+        return mesa;
     }
 
-    public void delete(Long id){
-        restauranteRepository.deleteById(id);
+    private RestauranteDTO convertToDTO(Restaurante restaurante) {
+        RestauranteDTO restauranteDTO = new RestauranteDTO();
+        restauranteDTO.setId(restaurante.getId());
+        restauranteDTO.setNome(restaurante.getNome());
+        return restauranteDTO;
     }
+
+
 }
