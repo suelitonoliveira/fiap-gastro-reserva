@@ -22,4 +22,10 @@ public class GlobalExceptionHandler {
         String mensagemErro = Objects.requireNonNull(ex.getBindingResult().getFieldError()).getDefaultMessage();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(mensagemErro);
     }
+
+    @ExceptionHandler(DataIntegrityViolation.class)
+    public ResponseEntity<String> handleDataIntegrityViolationException(DataIntegrityViolation ex) {
+        String mensagemErro = "Erro de violação de integridade: " + ex.getMessage();
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(mensagemErro);
+    }
 }
