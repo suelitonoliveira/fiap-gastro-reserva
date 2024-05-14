@@ -1,6 +1,6 @@
 <h1 align="center">🌟 SISTEMA DE RESERVA DE RESTAURANTE(GASTRORESERVA)  🌟</h1>
 
-<h2>📋 SUMARIO</h2>
+<h2>📋 SUMÁRIO</h2>
 
 - [🔍 Visão Geral](#-VisãoGeral)
 - [🏛️ Arquitetura ](#-Arquitetura )
