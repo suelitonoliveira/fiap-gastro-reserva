@@ -14,7 +14,7 @@ CREATE TABLE tb_usuario
     data_de_inclusao  TIMESTAMP,
     data_de_alteracao TIMESTAMP,
     tipo_usuario      VARCHAR(255)                            NOT NULL,
-    documento         VARCHAR(255)                            NOT NULL,
+    cpf               VARCHAR(255)                            NOT NULL,
     nome              VARCHAR(255)                            NOT NULL,
     senha             VARCHAR(255)                            NOT NULL,
     email             VARCHAR(255)                            NOT NULL,

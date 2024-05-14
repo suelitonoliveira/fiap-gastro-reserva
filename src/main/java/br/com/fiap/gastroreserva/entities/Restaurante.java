@@ -10,9 +10,12 @@ import java.util.List;
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 81feee0aee93e3856acd444e1480544284910201
+=======
+>>>>>>> 82e5414e1c8a10139cda65c25f0056e239ce1dd3
 @Builder(builderMethodName = "restauranteBuilder")
 
 @Entity
