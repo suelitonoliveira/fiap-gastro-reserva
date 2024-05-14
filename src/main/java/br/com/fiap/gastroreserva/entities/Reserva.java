@@ -14,6 +14,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Data
 @Table(name = "tb_reserva")
@@ -26,18 +28,23 @@ public class Reserva extends Auditoria {
     @Column(name = "COD")
     private Long id;
 
-    @OneToOne(mappedBy = "reserva")
-    private Avaliacao avaliacao;
-
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "USUARIO_COD")
     private Usuario usuario;
 
-    @Column(name = "DESCRICAO")
-    private String descricao;
+    @Column(name = "COMENTARIO")
+    private String comentario;
 
     @ManyToOne
+    @JoinColumn(name = "RESTAURANTE_COD")
     private Restaurante restaurante;
+
+    @Column(name = "DATA_AGENDAMENTO")
+    private LocalDateTime dataAgendamento;
+
+    @OneToOne
+    @JoinColumn(name = "MESA_COD")
+    private Mesa mesa;
 
 
 }
