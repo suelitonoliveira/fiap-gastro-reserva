@@ -9,7 +9,10 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 81feee0aee93e3856acd444e1480544284910201
 @Builder(builderMethodName = "restauranteBuilder")
 
 @Entity
