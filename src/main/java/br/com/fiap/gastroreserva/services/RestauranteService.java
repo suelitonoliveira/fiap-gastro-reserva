@@ -40,7 +40,7 @@ public class RestauranteService {
         for (MesaDTO mesaDTO : dto.getMesas()) {
             mesas.add(convertToEntity(mesaDTO));
         }
-        restaurante.setMesas(mesas);
+        restaurante.setMesa(mesas);
         return restaurante;
     }
 

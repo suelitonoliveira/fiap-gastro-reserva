@@ -24,11 +24,8 @@ import java.util.List;
 @Entity
 @Table(name = "tb_restaurante")
 @Data
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class Restaurante extends Auditoria   {
 
     @Id
@@ -36,10 +33,8 @@ public class Restaurante extends Auditoria   {
     @Column(name = "COD")
     private Long id;
 
-
     @Column(name = "NOME_RESTAURANTE")
     private String nome;
-
 
     @Column(name = "QTD_CADEIRA")
     @OneToMany(mappedBy = "restaurante")

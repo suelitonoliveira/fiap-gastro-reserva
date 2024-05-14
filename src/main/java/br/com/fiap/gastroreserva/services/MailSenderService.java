@@ -1,4 +1,4 @@
-package br.com.fiap.gastroreserva.service;
+package br.com.fiap.gastroreserva.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
