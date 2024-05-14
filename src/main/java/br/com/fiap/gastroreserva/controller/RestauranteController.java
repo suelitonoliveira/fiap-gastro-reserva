@@ -1,7 +1,7 @@
 package br.com.fiap.gastroreserva.controller;
 
 import br.com.fiap.gastroreserva.entities.Restaurante;
-import br.com.fiap.gastroreserva.service.MesaService;
+import br.com.fiap.gastroreserva.services.MesaService;
 import br.com.fiap.gastroreserva.services.RestauranteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

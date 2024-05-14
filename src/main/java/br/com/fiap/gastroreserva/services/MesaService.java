@@ -1,4 +1,4 @@
-package br.com.fiap.gastroreserva.service;
+package br.com.fiap.gastroreserva.services;
 
 import br.com.fiap.gastroreserva.dto.MesaDTO;
 import br.com.fiap.gastroreserva.entities.Mesa;
