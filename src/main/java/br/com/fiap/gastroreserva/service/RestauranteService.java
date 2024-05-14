@@ -1,4 +1,4 @@
-package br.com.fiap.gastroreserva.services;
+package br.com.fiap.gastroreserva.service;
 
 import br.com.fiap.gastroreserva.entities.Restaurante;
 import br.com.fiap.gastroreserva.repository.RestauranteRepository;

@@ -1,7 +1,8 @@
 package br.com.fiap.gastroreserva.controller;
 
 import br.com.fiap.gastroreserva.entities.Restaurante;
-import br.com.fiap.gastroreserva.services.RestauranteService;
+import br.com.fiap.gastroreserva.service.MesaService;
+import br.com.fiap.gastroreserva.service.RestauranteService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,8 +20,9 @@ public class RestauranteController {
     private final MesaService mesaService;
 
     @Autowired
-    public RestauranteController(RestauranteService  restauranteService) {
+    public RestauranteController(RestauranteService  restauranteService, MesaService mesaService) {
         this.restauranteService = restauranteService;
+        this.mesaService = mesaService;
     }
 
     @PostMapping

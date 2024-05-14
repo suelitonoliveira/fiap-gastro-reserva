@@ -1,16 +1,15 @@
 package br.com.fiap.gastroreserva.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 
 @Builder
 @Entity
 @Table(name = "tb_mesa")
 @Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Mesa  extends Auditoria{
