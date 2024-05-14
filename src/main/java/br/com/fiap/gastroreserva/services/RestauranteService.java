@@ -23,43 +23,36 @@ public class RestauranteService {
         this.restauranteRepository = restauranteRepository;
     }
 
-    public Collection<Restaurante>findAll(){
+    public Collection<Restaurante> findAll() {
         var restaurantes = restauranteRepository.findAll();
         return restaurantes;
     }
 
-    public RestauranteDTO save(RestauranteDTO restauranteDTO){
-        Restaurante restaurante = convertToEntity(restauranteDTO);
+    public RestauranteDTO save(RestauranteDTO restauranteDTO) {
+        Restaurante restaurante = toRestaurante(restauranteDTO);
         restaurante = restauranteRepository.save(restaurante);
         return convertToDTO(restaurante);
     }
 
-    private Restaurante convertToEntity(RestauranteDTO dto) {
-        Restaurante restaurante = new Restaurante();
-        restaurante.setId(dto.getId());
-        restaurante.setNome(dto.getNome());
-
-        List<Mesa> mesas = new ArrayList<>();
-        for (MesaDTO mesaDTO : dto.getMesas()) {
-            mesas.add(convertToEntity(mesaDTO));
-        }
-        restaurante.setMesa(mesas);
-        return restaurante;
-    }
-
-    private Mesa convertToEntity(MesaDTO dto) {
-        Mesa mesa = new Mesa();
-        mesa.setId(dto.getCod());
-        mesa.setQtdCadeira(dto.getQtdCadeira());
-        return mesa;
-    }
-
     private RestauranteDTO convertToDTO(Restaurante restaurante) {
-        RestauranteDTO restauranteDTO = new RestauranteDTO();
-        restauranteDTO.setId(restaurante.getId());
-        restauranteDTO.setNome(restaurante.getNome());
-        return restauranteDTO;
+
+        return new RestauranteDTO(
+                restaurante.getId(),
+                restaurante.getNome(),
+                restaurante.getMesa(),
+                restaurante.getReserva()
+        );
     }
+
+    private Restaurante toRestaurante(RestauranteDTO restauranteDTO) {
+        return new Restaurante(
+                restauranteDTO.id(),
+                restauranteDTO.nome(),
+                restauranteDTO.mesa(),
+                restauranteDTO.reserva()
+        );
+    }
+
 
     public boolean restauranteJaExiste(String nome) {
         return restauranteRepository.existsByNome(nome);

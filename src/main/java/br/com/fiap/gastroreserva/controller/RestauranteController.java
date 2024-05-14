@@ -30,7 +30,7 @@ public class RestauranteController {
 
     @PostMapping
     public ResponseEntity<?> save(@RequestBody @Valid RestauranteDTO restauranteDTO) {
-        if (service.restauranteJaExiste(restauranteDTO.getNome())) {
+        if (service.restauranteJaExiste(restauranteDTO.nome())) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Restaurante já existe");
         }
         RestauranteDTO savedRestauranteDTO = service.save(restauranteDTO);
