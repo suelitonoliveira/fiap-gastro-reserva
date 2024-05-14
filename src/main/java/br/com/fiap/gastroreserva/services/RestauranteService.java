@@ -24,6 +24,10 @@ public class RestauranteService {
         this.restauranteRepository = restauranteRepository;
     }
 
+    public Collection<Restaurante>findAll(){
+        var restaurantes = restauranteRepository.findAll();
+        return restaurantes;
+    }
 
     public RestauranteDTO save(RestauranteDTO restauranteDTO){
         Restaurante restaurante = convertToEntity(restauranteDTO);
