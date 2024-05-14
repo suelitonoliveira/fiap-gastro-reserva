@@ -1,7 +1,16 @@
 package br.com.fiap.gastroreserva.entities;
 
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @EqualsAndHashCode(callSuper = true)
 @Builder
@@ -16,14 +25,6 @@ public class TermoAceite extends Auditoria {
     @Column(name = "COD")
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "COD_USUARIO", nullable = false)
-    private Usuario usuario;
-
-    @Column(name = "ACEITO", nullable = false)
-    private Boolean seAceito;
-
     @Column(name = "DESCRICAO", nullable = false)
     private String descricao;
-
 }
