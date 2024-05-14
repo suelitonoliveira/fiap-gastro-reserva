@@ -1,9 +1,9 @@
 package br.com.fiap.gastroreserva.controller;
 
 import br.com.fiap.gastroreserva.entities.Restaurante;
+import br.com.fiap.gastroreserva.service.MesaService;
 import br.com.fiap.gastroreserva.services.RestauranteService;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,15 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/restaurante")
+@RequiredArgsConstructor
 public class RestauranteController {
 
     private final RestauranteService restauranteService;
     private final MesaService mesaService;
-
-    @Autowired
-    public RestauranteController(RestauranteService  restauranteService) {
-        this.restauranteService = restauranteService;
-    }
 
     @PostMapping
     public ResponseEntity<Restaurante> salvarRestaurante(@RequestBody Restaurante restaurante) {

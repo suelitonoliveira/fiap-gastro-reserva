@@ -1,7 +1,7 @@
 package br.com.fiap.gastroreserva.controller;
 
 import br.com.fiap.gastroreserva.dto.UsuarioDTO;
-import br.com.fiap.gastroreserva.service.UsuarioService;
+import br.com.fiap.gastroreserva.services.UsuarioService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

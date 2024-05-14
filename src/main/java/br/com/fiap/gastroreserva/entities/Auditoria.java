@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @MappedSuperclass
 @NoArgsConstructor
@@ -21,7 +22,7 @@ public class Auditoria {
 
     @PrePersist
     protected void onCreate() {
-        this.dataDeInclusao = LocalDateTime.now();
+            this.dataDeInclusao = LocalDateTime.now();
     }
 
     @PreUpdate

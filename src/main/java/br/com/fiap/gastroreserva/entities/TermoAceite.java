@@ -27,5 +27,4 @@ public class TermoAceite extends Auditoria {
 
     @Column(name = "DESCRICAO", nullable = false)
     private String descricao;
-
 }

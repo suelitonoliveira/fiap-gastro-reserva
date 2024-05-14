@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
+import org.hibernate.validator.constraints.br.CPF;
 
 @Data
 @Builder
@@ -14,8 +15,9 @@ public class UsuarioDTO {
     @NotNull(message = "Campo tipoUsuario obrigatório")
     private TipoUsuario tipoUsuario;
 
-    @NotBlank(message = "Campo  documento obrigatório")
-    private String documento;
+    @NotBlank(message = "Campo  cpf obrigatório")
+    @CPF
+    private String cpf;
 
     @NotBlank(message = "Campo nome obrigatório")
     private String nome;

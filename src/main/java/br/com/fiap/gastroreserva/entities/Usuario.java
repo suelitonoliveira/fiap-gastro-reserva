@@ -14,9 +14,11 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
-
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -24,8 +26,23 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@Builder(builderMethodName = "usuarioBuilder")
+@EqualsAndHashCode(callSuper = true)
 public class Usuario extends Auditoria {
+
+    @Builder(builderMethodName = "usuarioBuilderSuper")
+    public Usuario(LocalDateTime dataDeInclusao, LocalDateTime dataDeAlteracao, Long id, String cpf, TipoUsuario tipoUsuario, String nome, String senha, String email, String endereco, TermoAceite termoAceite) {
+        super(dataDeInclusao, dataDeAlteracao);
+        this.id = id;
+        this.cpf = cpf;
+        this.tipoUsuario = tipoUsuario;
+        this.nome = nome;
+        this.senha = senha;
+        this.email = email;
+        this.endereco = endereco;
+        this.termoAceite = termoAceite;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "COD")
@@ -35,8 +52,8 @@ public class Usuario extends Auditoria {
     @Enumerated(EnumType.STRING)
     private TipoUsuario tipoUsuario;
 
-    @Column(name = "DOCUMENTO", nullable = false)
-    private String documento;
+    @Column(name = "CPF", nullable = false)
+    private String cpf;
 
     @Column(name = "NOME", nullable = false)
     private String nome;
