@@ -1,5 +1,7 @@
 package br.com.fiap.gastroreserva.entities;
 
+import lombok.*;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,10 +17,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
+
 @Builder
 @Entity
 @Table(name = "tb_mesa")
 @Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Mesa extends Auditoria {

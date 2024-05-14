@@ -16,10 +16,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
+
 
 import java.time.LocalDateTime;
-
 
 @Entity
 @Table(name = "tb_usuario")

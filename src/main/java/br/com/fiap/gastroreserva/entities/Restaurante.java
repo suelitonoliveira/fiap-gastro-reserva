@@ -1,5 +1,9 @@
 package br.com.fiap.gastroreserva.entities;
 
+
+import jakarta.persistence.*;
+import lombok.*;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,25 +13,28 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 import java.util.List;
 
-
-@Builder(builderMethodName = "restauranteBuilder")
 
 @Entity
 @Table(name = "tb_restaurante")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Restaurante {
+public class Restaurante extends Auditoria   {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "COD")
     private Long id;
+
+    @Column(name = "NOME_RESTAURANTE")
+    private String nome;
 
     @Column(name = "QTD_CADEIRA")
     @OneToMany(mappedBy = "restaurante")
@@ -37,4 +44,5 @@ public class Restaurante {
     @OneToMany(mappedBy = "restaurante")
     @JsonIgnore
     private List<Reserva> reserva;
+
 }
