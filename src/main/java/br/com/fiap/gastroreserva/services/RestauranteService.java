@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class RestauranteService {
@@ -62,5 +61,8 @@ public class RestauranteService {
         return restauranteDTO;
     }
 
+    public boolean restauranteJaExiste(String nome) {
+        return restauranteRepository.existsByNome(nome);
+    }
 
 }
