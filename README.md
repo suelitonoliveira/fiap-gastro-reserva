@@ -38,10 +38,13 @@ Em java 17 juntamente com o framework  spring boot entre outros citados nesse du
 É necessário ter um java 17 instalado e configurado na maquina e uma IDE para rodar o projeto localmente.
 
 <h2>📖 Acesso ao banco de dados</h2>
-Deve ser feito após startar o projeto ja que é um banco de dados configurado para rodar em memória deve ser acessado pela seguinte url contendo essas configurações da imagem.
+Deve ser feito após startar o projeto ja que é um banco de dados configurado para rodar em memória deve ser acessado pela seguinte url contendo essas configurações 
 url: http://localhost:8080/h2-console/login.jsp?jsessionid=6959f9445b003b5f86179b413230f210
-![img.png](img.png)
 
+spring.flyway.url=jdbc:h2:mem:gastroDB
+spring.flyway.user=sa
+spring.flyway.password=
+spring.flyway.locations=classpath:db/migration
 
 ## 📖 Documentação-API
 - Segue o link do miro aonde mostramos todo os fluxos
