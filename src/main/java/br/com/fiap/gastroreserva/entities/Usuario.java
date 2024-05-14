@@ -16,16 +16,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
+
 
 import java.time.LocalDateTime;
 
-
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 82e5414e1c8a10139cda65c25f0056e239ce1dd3
 @Entity
 @Table(name = "tb_usuario")
 @Data
