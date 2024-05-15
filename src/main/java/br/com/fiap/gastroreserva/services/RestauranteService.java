@@ -46,7 +46,7 @@ public class RestauranteService {
 
     private Mesa convertToEntity(MesaDTO dto) {
         Mesa mesa = new Mesa();
-        mesa.setId(dto.getCod());
+        mesa.setId(dto.getCodMesa());
         mesa.setQtdCadeira(dto.getQtdCadeira());
         return mesa;
     }

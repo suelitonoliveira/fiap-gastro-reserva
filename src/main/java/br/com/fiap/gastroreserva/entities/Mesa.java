@@ -32,12 +32,15 @@ public class Mesa extends Auditoria {
     @Column(name = "COD")
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "USUARIO_COD")
+    private Usuario usuario;
+
     @Column(name = "QTD_CADEIRA", nullable = false)
     private Integer qtdCadeira;
 
     @ManyToOne
     @JoinColumn(name = "COD_RESTAURANTE", nullable = false)
-    @JsonIgnore
     private Restaurante restaurante;
 
 }
