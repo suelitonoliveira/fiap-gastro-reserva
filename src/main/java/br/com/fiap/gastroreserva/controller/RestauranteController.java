@@ -1,26 +1,38 @@
 package br.com.fiap.gastroreserva.controller;
 
 import br.com.fiap.gastroreserva.dto.RestauranteDTO;
+import br.com.fiap.gastroreserva.entities.Restaurante;
 import br.com.fiap.gastroreserva.services.RestauranteService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Collection;
 
 @RestController
 @RequestMapping("/restaurantes")
 @RequiredArgsConstructor
 public class RestauranteController {
 
+    @Autowired
+    private RestauranteService service;
 
-    private final RestauranteService service;
+
+    @GetMapping
+    public ResponseEntity<Collection<Restaurante>> findAll(){
+        var restaurantes = service.findAll();
+        return ResponseEntity.ok(restaurantes);
+    }
+
 
     @PostMapping
-    public ResponseEntity<RestauranteDTO> save(@RequestBody @Valid RestauranteDTO restauranteDTO) {
+    public ResponseEntity<?> save(@RequestBody @Valid RestauranteDTO restauranteDTO) {
+        if (service.restauranteJaExiste(restauranteDTO.nome())) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Restaurante já existe");
+        }
         RestauranteDTO savedRestauranteDTO = service.save(restauranteDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedRestauranteDTO);
     }

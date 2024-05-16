@@ -1,15 +1,16 @@
 package br.com.fiap.gastroreserva.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+
+import br.com.fiap.gastroreserva.entities.Mesa;
+import br.com.fiap.gastroreserva.entities.Reserva;
 
 import java.util.List;
 
-@Getter
-@Setter
+public record RestauranteDTO(
+        Long id,
+        String nome,
+        List<Mesa>mesa,
+        List<Reserva> reserva
+) {
 
-public class RestauranteDTO {
-    private Long id;
-    private String nome;
-    private List<MesaDTO> mesas;
 }
