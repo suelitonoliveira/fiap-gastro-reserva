@@ -23,7 +23,7 @@ public class Notificacao extends Auditoria {
     private String mensagem;
 
     @Column(name = "TIPO_NOTIFICACAO", nullable = false)
-    private TipoNotificacao tipoNotificacao;
+    private TipoNotificacao tipoNotificacao = TipoNotificacao.EMAIL;
 
     @OneToOne
     @JoinColumn(name = "COD_USUARIO")
