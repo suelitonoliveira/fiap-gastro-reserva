@@ -6,6 +6,7 @@
 - [🏛️ Arquitetura ](#-Arquitetura )
 - [🚀 Para startar o projeto](#-Iniciar)
 - [📖 Documentação-API](#-Documentação-API)
+- [📖 Autenticação-API](#-Autenticação-API)
 - [🤝 Integrantes](#-Integrantes)
 
 ## 🔍 VisãoGeral
@@ -21,6 +22,9 @@ Na parte de codificação será utilizado como linguagem de programação JAVA j
 ## 🏛️ Arquitetura
 
 Em java 17 juntamente com o framework  spring boot entre outros citados nesse durante o projeto onde foi implementado toda a lógica de negócio, utilizamos alguns padrões de projeto como:
+
+
+- **Autenticação:** autenticação foi realizada de forma basica com spring security.
 
 - **MVC :** onde o projeto é dividido em três camadas: a camada de interação do usuário (view), a camada de manipulação dos dados (model) e a camada de controle (controller).
 
@@ -50,6 +54,13 @@ spring.flyway.locations=classpath:db/migration
 - Segue o link do miro aonde mostramos todo os fluxos
 https://miro.com/app/board/uXjVKOlYiQw=/?share_link_id=285328862468
 - Collection postman: https://universal-crater-6079.postman.co/workspace/fiap~63b45161-f5be-4f39-8e20-86f482f27767/collection/13186621-db46a9b2-2f80-4d99-8331-ee127237e7da?action=share&creator=13186621
+
+## 📖 Autenticação-API
+- Autenticação foi configurada pelo spring security de forma basica sendo assim é preciso passar o usuario e senha para poder ter acesso aos end points.
+Na abaa Authorization - selecionaro type -Basic Auth e informar os dados abaixo
+- Username: user
+- Password : password
+
 
 ## 🤝 Integrantes
 

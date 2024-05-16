@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.nio.file.AccessDeniedException;
+
 @RestController
 @RequestMapping("reservas")
 @RequiredArgsConstructor
@@ -19,7 +21,7 @@ public class ReservaController {
     private final ReservaService reservaService;
 
     @PostMapping
-    public ResponseEntity<ReservaDTO> save(@RequestBody @Valid ReservaDTO reservaDTO) {
+    public ResponseEntity<ReservaDTO> save(@RequestBody @Valid ReservaDTO reservaDTO) throws AccessDeniedException {
         return ResponseEntity.status(HttpStatus.CREATED).body(reservaService.salvarReserva(reservaDTO));
     }
 }
