@@ -57,7 +57,7 @@ https://miro.com/app/board/uXjVKOlYiQw=/?share_link_id=285328862468
 
 ## 📖 Autenticação-API
 - Autenticação foi configurada pelo spring security de forma basica sendo assim é preciso passar o usuario e senha para poder ter acesso aos end points.
-Na abaa Authorization - selecionaro type -Basic Auth e informar os dados abaixo
+Na aba Authorization - selecionaro type -Basic Auth e informar os dados abaixo
 - Username: user
 - Password : password
 
