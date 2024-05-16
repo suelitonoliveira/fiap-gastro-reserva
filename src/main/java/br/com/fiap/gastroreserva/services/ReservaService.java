@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.nio.file.AccessDeniedException;
 import java.util.Objects;
 
 @Service
@@ -27,8 +28,13 @@ public class ReservaService {
 
     private final UsuarioRepository usuarioRepository;
 
-    public ReservaDTO salvarReserva(@Valid ReservaDTO reservaDTO) {
+    private final AutenticacaoService autenticacaoService;
+
+    public ReservaDTO salvarReserva(@Valid ReservaDTO reservaDTO) throws AccessDeniedException {
         try {
+            if (!autenticacaoService.verificarSeUsuarioEstaAutenticado())  {
+                throw new AccessDeniedException("Acesso negado. Usuário não esta autenticado");
+            }
             Usuario usuario = usuarioRepository.findById(reservaDTO.getCodUsuario())
                     .orElseThrow(() -> new RecursoNaoEncontradoException(String.format("Usuario com id:%d não encontrado", reservaDTO.getCodUsuario())));
 
