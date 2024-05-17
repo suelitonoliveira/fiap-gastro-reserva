@@ -9,7 +9,7 @@ import java.util.List;
 public record RestauranteDTO(
         Long id,
         String nome,
-        List<Mesa>mesa,
+        List<Mesa> mesa,
         List<Reserva> reserva
 ) {
 

@@ -1,5 +1,6 @@
 package br.com.fiap.gastroreserva.controller;
 
+import br.com.fiap.gastroreserva.dto.ReservaDTO;
 import br.com.fiap.gastroreserva.dto.RestauranteDTO;
 import br.com.fiap.gastroreserva.entities.Restaurante;
 import br.com.fiap.gastroreserva.services.RestauranteService;
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.List;
 
 @RestController
 @RequestMapping("/restaurantes")
@@ -21,13 +23,6 @@ public class RestauranteController {
     private RestauranteService service;
 
 
-    @GetMapping
-    public ResponseEntity<Collection<Restaurante>> findAll(){
-        var restaurantes = service.findAll();
-        return ResponseEntity.ok(restaurantes);
-    }
-
-
     @PostMapping
     public ResponseEntity<?> save(@RequestBody @Valid RestauranteDTO restauranteDTO) {
         if (service.restauranteJaExiste(restauranteDTO.nome())) {
@@ -35,6 +30,11 @@ public class RestauranteController {
         }
         RestauranteDTO savedRestauranteDTO = service.save(restauranteDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedRestauranteDTO);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<RestauranteDTO>> listar() {
+        return ResponseEntity.ok(service.buscarRestaurantes());
     }
 
 }

@@ -23,6 +23,7 @@ public class Notificacao extends Auditoria {
     private String mensagem;
 
     @Column(name = "TIPO_NOTIFICACAO", nullable = false)
+    @Enumerated(EnumType.STRING)
     private TipoNotificacao tipoNotificacao = TipoNotificacao.EMAIL;
 
     @OneToOne
