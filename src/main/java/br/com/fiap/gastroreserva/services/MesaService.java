@@ -14,6 +14,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.nio.file.AccessDeniedException;
+
 import static br.com.fiap.gastroreserva.mapper.MesaMapper.*;
 
 @Service
@@ -26,8 +28,14 @@ public class MesaService {
 
     private final MesaRepository mesaRepository;
 
-    public MesaDTO salvarMesa(MesaDTO mesaDTO) {
+    private final AutenticacaoService autenticacaoService;
+
+
+    public MesaDTO salvarMesa(MesaDTO mesaDTO) throws AccessDeniedException {
         try {
+            if (!autenticacaoService.verificarSeUsuarioEstaAutenticado()) {
+                throw new AccessDeniedException("Acesso negado. Usuário não esta autenticado");
+            }
             Usuario usuario = usuarioRepository.findById(mesaDTO.getCodUsuario())
                     .orElseThrow(() -> new RecursoNaoEncontradoException(String.format("Usuario com id:%d não encontrado", mesaDTO.getCodUsuario())));
 
