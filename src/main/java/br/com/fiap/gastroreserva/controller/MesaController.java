@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.nio.file.AccessDeniedException;
 
 @RestController
-@RequestMapping("mesas")
+@RequestMapping("/mesas")
 @RequiredArgsConstructor
 public class MesaController {
 
