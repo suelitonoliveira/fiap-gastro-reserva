@@ -32,7 +32,7 @@ CREATE TABLE tb_notificacao
     data_de_inclusao  TIMESTAMP,
     data_de_alteracao TIMESTAMP,
     mensagem          VARCHAR(255)                            NOT NULL,
-    tipo_notificacao  SMALLINT                                NOT NULL,
+    tipo_notificacao  VARCHAR(255)                             NOT NULL,
     cod_usuario       BIGINT,
     CONSTRAINT pk_tb_notificacao PRIMARY KEY (cod)
 );

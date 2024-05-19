@@ -10,11 +10,13 @@ import br.com.fiap.gastroreserva.mapper.ReservaMapper;
 import br.com.fiap.gastroreserva.repository.ReservaRepository;
 import br.com.fiap.gastroreserva.repository.RestauranteRepository;
 import br.com.fiap.gastroreserva.repository.UsuarioRepository;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.nio.file.AccessDeniedException;
 import java.util.Objects;
 
 @Service
@@ -27,8 +29,16 @@ public class ReservaService {
 
     private final UsuarioRepository usuarioRepository;
 
-    public ReservaDTO salvarReserva(@Valid ReservaDTO reservaDTO) {
+    private final AutenticacaoService autenticacaoService;
+
+    private final NotificacaoService notificacaoService;
+
+    @Transactional(rollbackOn = Exception.class)
+    public ReservaDTO salvarReserva(@Valid ReservaDTO reservaDTO) throws AccessDeniedException {
         try {
+            if (!autenticacaoService.verificarSeUsuarioEstaAutenticado()) {
+                throw new AccessDeniedException("Acesso negado. Usuário não esta autenticado");
+            }
             Usuario usuario = usuarioRepository.findById(reservaDTO.getCodUsuario())
                     .orElseThrow(() -> new RecursoNaoEncontradoException(String.format("Usuario com id:%d não encontrado", reservaDTO.getCodUsuario())));
 
@@ -41,6 +51,9 @@ public class ReservaService {
             Reserva entity = ReservaMapper.toEntity(reservaDTO, usuario, restaurante, mensaSelecionada);
 
             Reserva reservaSalva = reservaRepository.save(entity);
+
+            notificacaoService.enviarNotificacao(usuario,
+                    String.format("%s Sua reserva para o restaurante %s foi efetuada com sucesso", usuario.getNome(), restaurante.getNome()));
 
             return ReservaMapper.toDTO(reservaSalva);
         } catch (DataIntegrityViolationException ex) {

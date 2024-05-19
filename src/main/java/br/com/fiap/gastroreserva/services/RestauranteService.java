@@ -1,17 +1,17 @@
 package br.com.fiap.gastroreserva.services;
 
-import br.com.fiap.gastroreserva.dto.MesaDTO;
 import br.com.fiap.gastroreserva.dto.RestauranteDTO;
-import br.com.fiap.gastroreserva.entities.Mesa;
 import br.com.fiap.gastroreserva.entities.Restaurante;
+import br.com.fiap.gastroreserva.mapper.RestauranteMapper;
 import br.com.fiap.gastroreserva.repository.RestauranteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
+
+import static br.com.fiap.gastroreserva.mapper.RestauranteMapper.convertToDTO;
+import static br.com.fiap.gastroreserva.mapper.RestauranteMapper.toRestaurante;
 
 @Service
 public class RestauranteService {
@@ -24,24 +24,20 @@ public class RestauranteService {
         this.restauranteRepository = restauranteRepository;
     }
 
+    public Collection<Restaurante> findAll() {
+        var restaurantes = restauranteRepository.findAll();
+        return restaurantes;
+    }
 
-    public RestauranteDTO save(RestauranteDTO restauranteDTO){
-        Restaurante restaurante = convertToEntity(restauranteDTO);
+    public RestauranteDTO save(RestauranteDTO restauranteDTO) {
+        Restaurante restaurante = toRestaurante(restauranteDTO);
         restaurante = restauranteRepository.save(restaurante);
         return convertToDTO(restaurante);
     }
 
-    private Restaurante convertToEntity(RestauranteDTO dto) {
-        Restaurante restaurante = new Restaurante();
-        restaurante.setId(dto.getId());
-        restaurante.setNome(dto.getNome());
 
-        List<Mesa> mesas = new ArrayList<>();
-        for (MesaDTO mesaDTO : dto.getMesas()) {
-            mesas.add(convertToEntity(mesaDTO));
-        }
-        restaurante.setMesa(mesas);
-        return restaurante;
+    public boolean restauranteJaExiste(String nome) {
+        return restauranteRepository.existsByNome(nome);
     }
 
     private Mesa convertToEntity(MesaDTO dto) {
@@ -49,14 +45,9 @@ public class RestauranteService {
         mesa.setId(dto.getCodMesa());
         mesa.setQtdCadeira(dto.getQtdCadeira());
         return mesa;
+
+    public List<RestauranteDTO> buscarRestaurantes() {
+        return restauranteRepository.findAll().stream().map(RestauranteMapper::convertToDTO).toList();
+
     }
-
-    private RestauranteDTO convertToDTO(Restaurante restaurante) {
-        RestauranteDTO restauranteDTO = new RestauranteDTO();
-        restauranteDTO.setId(restaurante.getId());
-        restauranteDTO.setNome(restaurante.getNome());
-        return restauranteDTO;
-    }
-
-
 }

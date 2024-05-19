@@ -11,14 +11,20 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
+import java.nio.file.AccessDeniedException;
+
 @Service
 @RequiredArgsConstructor
 public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
     private final TermoAceiteRepository termoAceiteRepository;
+    private final AutenticacaoService autenticacaoService;
 
-    public UsuarioDTO salvarUsuario(UsuarioDTO usuarioDTO) {
+    public UsuarioDTO salvarUsuario(UsuarioDTO usuarioDTO) throws AccessDeniedException {
+     if (!autenticacaoService.verificarSeUsuarioEstaAutenticado())  {
+         throw new AccessDeniedException("Acesso negado. Usuário não esta autenticado");
+     }
         TermoAceite termoAceite = termoAceiteRepository.findById(usuarioDTO.getCodTermoAceite())
                 .orElseThrow(() -> new RecursoNaoEncontradoException(String.format("Termo de aceite com id:%d não encontrado", usuarioDTO.getCodTermoAceite())));
 
