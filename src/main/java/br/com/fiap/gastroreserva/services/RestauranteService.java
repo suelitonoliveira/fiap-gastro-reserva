@@ -1,6 +1,8 @@
 package br.com.fiap.gastroreserva.services;
 
+import br.com.fiap.gastroreserva.dto.MesaDTO;
 import br.com.fiap.gastroreserva.dto.RestauranteDTO;
+import br.com.fiap.gastroreserva.entities.Mesa;
 import br.com.fiap.gastroreserva.entities.Restaurante;
 import br.com.fiap.gastroreserva.mapper.RestauranteMapper;
 import br.com.fiap.gastroreserva.repository.RestauranteRepository;
@@ -40,7 +42,15 @@ public class RestauranteService {
         return restauranteRepository.existsByNome(nome);
     }
 
+    private Mesa convertToEntity(MesaDTO dto) {
+        Mesa mesa = new Mesa();
+        mesa.setId(dto.getCodMesa());
+        mesa.setQtdCadeira(dto.getQtdCadeira());
+        return mesa;
+    }
+
     public List<RestauranteDTO> buscarRestaurantes() {
         return restauranteRepository.findAll().stream().map(RestauranteMapper::convertToDTO).toList();
+
     }
 }
