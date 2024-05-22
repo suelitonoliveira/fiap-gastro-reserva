@@ -40,4 +40,7 @@ public class Mesa extends Auditoria {
     @JsonIgnore
     private Restaurante restaurante;
 
+    @Column(name = "NUMERO", nullable = false)
+    private int numero;
+
 }
