@@ -49,6 +49,9 @@ public class Reserva extends Auditoria {
     @Column(name = "CHECKED_IN")
     private boolean checkedIn;
 
+    @Column(name = "CHECKED_OUT")
+    private boolean checkedOut;
+
     // Métodos de configuração adicionais
     public void setNomeCliente(String nomeCliente) {
         if (this.usuario != null) {
