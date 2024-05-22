@@ -52,24 +52,5 @@ public class Reserva extends Auditoria {
     @Column(name = "CHECKED_OUT")
     private boolean checkedOut;
 
-    // Métodos de configuração adicionais
-    public void setNomeCliente(String nomeCliente) {
-        if (this.usuario != null) {
-            this.usuario.setNome(nomeCliente);
-        }
-    }
 
-    public String getNomeCliente() {
-        return this.usuario != null ? this.usuario.getNome() : null;
-    }
-
-    public void setNumeroMesa(int numeroMesa) {
-        if (this.mesa != null) {
-            this.mesa.setNumero(numeroMesa);
-        }
-    }
-
-    public int getNumeroMesa() {
-        return this.mesa != null ? this.mesa.getNumero() : 0;
-    }
 }

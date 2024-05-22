@@ -28,4 +28,10 @@ public class GlobalExceptionHandler {
         String mensagemErro = "Erro de violação de integridade: " + ex.getMessage();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(mensagemErro);
     }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<String> handleRuntimeException(RuntimeException ex) {
+        String mensagemErro = "Erro de execução: " + ex.getMessage();
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(mensagemErro);
+    }
 }

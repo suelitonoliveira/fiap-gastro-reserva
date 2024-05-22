@@ -60,4 +60,13 @@ public class ReservaService {
             throw new DataIntegrityViolation(String.format("Mesa com  id:%d ja agendada selecione outra", reservaDTO.getCodMesa()), ex);
         }
     }
+
+    public Reserva buscarReservaPorNomeCliente(String nomeCliente) {
+        Reserva reserva = reservaRepository.findByUsuario_Nome(nomeCliente);
+        return  reserva;
+    }
+
+    public void atualizarReserva(Reserva reserva) {
+        reservaRepository.save(reserva);
+    }
 }
