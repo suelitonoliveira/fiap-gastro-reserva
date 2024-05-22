@@ -43,4 +43,7 @@ public class Mesa extends Auditoria {
     @JoinColumn(name = "COD_RESTAURANTE", nullable = false)
     private Restaurante restaurante;
 
+    @Column(name = "NUMERO", nullable = false)
+    private int numero;
+
 }

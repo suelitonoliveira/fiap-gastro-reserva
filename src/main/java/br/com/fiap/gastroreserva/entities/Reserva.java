@@ -46,5 +46,27 @@ public class Reserva extends Auditoria {
     @JoinColumn(name = "MESA_COD")
     private Mesa mesa;
 
+    @Column(name = "CHECKED_IN")
+    private boolean checkedIn;
 
+    // Métodos de configuração adicionais
+    public void setNomeCliente(String nomeCliente) {
+        if (this.usuario != null) {
+            this.usuario.setNome(nomeCliente);
+        }
+    }
+
+    public String getNomeCliente() {
+        return this.usuario != null ? this.usuario.getNome() : null;
+    }
+
+    public void setNumeroMesa(int numeroMesa) {
+        if (this.mesa != null) {
+            this.mesa.setNumero(numeroMesa);
+        }
+    }
+
+    public int getNumeroMesa() {
+        return this.mesa != null ? this.mesa.getNumero() : 0;
+    }
 }
