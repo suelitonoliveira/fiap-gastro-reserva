@@ -44,6 +44,8 @@ public class ReservaMapper {
                 .codRestaurante(reserva.getRestaurante().getId())
                 .codUsuario(reserva.getUsuario().getId())
                 .comentario(reserva.getComentario())
+                .nomeCliente(reserva.getUsuario().getNome())
+                .checkedIn(reserva.isCheckedIn())
                 .build();
     }
 

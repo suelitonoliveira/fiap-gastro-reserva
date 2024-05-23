@@ -1,9 +1,12 @@
 package br.com.fiap.gastroreserva.services;
 
 import br.com.fiap.gastroreserva.dto.CheckInDTO;
+import br.com.fiap.gastroreserva.dto.ReservaDTO;
 import br.com.fiap.gastroreserva.entities.Reserva;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -22,5 +25,9 @@ public class CheckInService {
         reservaService.atualizarReserva(reserva);
 
         return "Checkin realizada com sucesso";
+    }
+
+    public List<ReservaDTO> listarCheckins() {
+      return  reservaService.buscarCheckins();
     }
 }

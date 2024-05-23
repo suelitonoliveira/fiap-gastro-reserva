@@ -30,4 +30,9 @@ public class ReservaDTO {
 
     private String comentario;
 
+    private String nomeCliente;
+
+    private boolean checkedIn;
+
+
 }

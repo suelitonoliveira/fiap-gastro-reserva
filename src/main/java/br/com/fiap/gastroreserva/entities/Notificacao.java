@@ -26,7 +26,7 @@ public class Notificacao extends Auditoria {
     @Enumerated(EnumType.STRING)
     private TipoNotificacao tipoNotificacao = TipoNotificacao.EMAIL;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "COD_USUARIO")
     private Usuario usuario;
 
