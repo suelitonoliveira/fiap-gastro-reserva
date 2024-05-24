@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Notificacao extends Auditoria {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "COD")
@@ -29,6 +30,5 @@ public class Notificacao extends Auditoria {
     @ManyToOne
     @JoinColumn(name = "COD_USUARIO")
     private Usuario usuario;
-
 
 }
