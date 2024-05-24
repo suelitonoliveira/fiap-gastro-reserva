@@ -1,23 +1,18 @@
 package br.com.fiap.gastroreserva.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class CheckOutDTO {
 
-    private Long reservaId;
+    @NotBlank(message = "Obrigatório informar o nome do cliente")
     private String nomeCliente;
-    private int numeroMesa;
 
-
-    public CheckOutDTO() {}
-
-
-    public CheckOutDTO(Long reservaId, String nomeCliente, int numeroMesa) {
-        this.reservaId = reservaId;
-        this.nomeCliente = nomeCliente;
-        this.numeroMesa = numeroMesa;
-    }
 }
