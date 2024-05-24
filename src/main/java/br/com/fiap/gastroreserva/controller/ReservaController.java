@@ -22,4 +22,9 @@ public class ReservaController {
     public ResponseEntity<ReservaDTO> incluir(@RequestBody @Valid ReservaDTO reservaDTO) throws AccessDeniedException {
         return ResponseEntity.status(HttpStatus.CREATED).body(reservaService.salvarReserva(reservaDTO));
     }
+
+    @GetMapping
+    public ResponseEntity<List<ReservaDTO>> listar() {
+        return ResponseEntity.ok(reservaService.listaReserva());
+    }
 }

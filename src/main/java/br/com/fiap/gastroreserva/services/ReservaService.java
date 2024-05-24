@@ -17,6 +17,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.nio.file.AccessDeniedException;
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -59,5 +60,23 @@ public class ReservaService {
         } catch (DataIntegrityViolationException ex) {
             throw new DataIntegrityViolation(String.format("Mesa com  id:%d ja agendada selecione outra", reservaDTO.getCodMesa()), ex);
         }
+    }
+
+    public Reserva buscarReservaPorNomeCliente(String nomeCliente) {
+        return reservaRepository.findByUsuario_Nome(nomeCliente).orElseThrow(() ->
+                new RecursoNaoEncontradoException("Cliente não possui reserva!"));
+
+    }
+
+    public void atualizarReserva(Reserva reserva) {
+        reservaRepository.save(reserva);
+    }
+
+    public List<ReservaDTO> listaReserva() {
+        return reservaRepository.findAll().stream().map(ReservaMapper::toDTO).toList();
+    }
+
+    public List<ReservaDTO> buscarCheckins() {
+        return reservaRepository.findAll().stream().map(ReservaMapper::toDTO).filter(reservaDTO -> reservaDTO.isCheckedIn()).toList();
     }
 }

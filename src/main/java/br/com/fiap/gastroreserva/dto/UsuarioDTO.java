@@ -12,6 +12,8 @@ import org.hibernate.validator.constraints.br.CPF;
 @Builder
 public class UsuarioDTO {
 
+    private Long id;
+
     @NotNull(message = "Campo tipoUsuario obrigatório")
     private TipoUsuario tipoUsuario;
 
@@ -34,6 +36,7 @@ public class UsuarioDTO {
 
     @NotNull(message = "Campo codTermoAceite obrigatório")
     private Long codTermoAceite;
+
 
 
 }

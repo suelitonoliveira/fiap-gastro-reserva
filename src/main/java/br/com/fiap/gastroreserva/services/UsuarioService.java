@@ -12,6 +12,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import java.nio.file.AccessDeniedException;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -36,5 +37,9 @@ public class UsuarioService {
                 .orElseGet(() -> usuarioRepository.save(entity));
 
         return UsuarioMapper.toDTO(usuarioSalvo);
+    }
+
+    public List<UsuarioDTO> listarUsuarios() {
+       return  usuarioRepository.findAll().stream().map(UsuarioMapper::toDTO).toList();
     }
 }

@@ -46,5 +46,11 @@ public class Reserva extends Auditoria {
     @JoinColumn(name = "MESA_COD")
     private Mesa mesa;
 
+    @Column(name = "CHECKED_IN")
+    private boolean checkedIn;
+
+    @Column(name = "CHECKED_OUT")
+    private boolean checkedOut;
+
 
 }
