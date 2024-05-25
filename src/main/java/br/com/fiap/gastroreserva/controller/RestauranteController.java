@@ -23,7 +23,7 @@ public class RestauranteController {
     private RestauranteService service;
 
 
-    @PostMapping
+    @PostMapping("/cadastrar-restaurante")
     public ResponseEntity<?> save(@RequestBody @Valid RestauranteDTO restauranteDTO) {
         if (service.restauranteJaExiste(restauranteDTO.nome())) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Restaurante já existe");
