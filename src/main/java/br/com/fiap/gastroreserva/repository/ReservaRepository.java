@@ -10,4 +10,10 @@ public interface ReservaRepository extends JpaRepository<Reserva, Long> {
     @Query("select r from Reserva r where r.usuario.nome = ?1")
     Optional<Reserva> findByUsuario_Nome(String nome);
 
+    @Query("""
+            select (count(r) > 0) from Reserva r inner join r.restaurante.mesa mesa
+            where r.usuario.cpf = ?1 and r.restaurante.id = ?2""")
+    boolean existeReserva(String cpf, Long idRestaurante);
+
+
 }

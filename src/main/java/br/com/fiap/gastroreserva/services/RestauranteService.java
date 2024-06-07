@@ -1,35 +1,24 @@
 package br.com.fiap.gastroreserva.services;
 
-import br.com.fiap.gastroreserva.dto.MesaDTO;
 import br.com.fiap.gastroreserva.dto.RestauranteDTO;
-import br.com.fiap.gastroreserva.entities.Mesa;
 import br.com.fiap.gastroreserva.entities.Restaurante;
 import br.com.fiap.gastroreserva.mapper.RestauranteMapper;
+import br.com.fiap.gastroreserva.repository.MesaRepository;
 import br.com.fiap.gastroreserva.repository.RestauranteRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.List;
 
 import static br.com.fiap.gastroreserva.mapper.RestauranteMapper.convertToDTO;
 import static br.com.fiap.gastroreserva.mapper.RestauranteMapper.toRestaurante;
 
 @Service
+@RequiredArgsConstructor
 public class RestauranteService {
 
-    @Autowired
-    private RestauranteRepository restauranteRepository;
-
-    @Autowired
-    public RestauranteService(RestauranteRepository restauranteRepository) {
-        this.restauranteRepository = restauranteRepository;
-    }
-
-    public Collection<Restaurante> findAll() {
-        var restaurantes = restauranteRepository.findAll();
-        return restaurantes;
-    }
+    private final RestauranteRepository restauranteRepository;
+    private final MesaRepository mesaRepository;
 
     public RestauranteDTO save(RestauranteDTO restauranteDTO) {
         Restaurante restaurante = toRestaurante(restauranteDTO);
@@ -42,15 +31,12 @@ public class RestauranteService {
         return restauranteRepository.existsByNome(nome);
     }
 
-    private Mesa convertToEntity(MesaDTO dto) {
-        Mesa mesa = new Mesa();
-        mesa.setId(dto.getCodMesa());
-        mesa.setQtdCadeira(dto.getQtdCadeira());
-        return mesa;
-    }
 
     public List<RestauranteDTO> buscarRestaurantes() {
-        return restauranteRepository.findAll().stream().map(RestauranteMapper::convertToDTO).toList();
+        return restauranteRepository.findAll()
+                .stream()
+                .map(RestauranteMapper::convertToDTO)
+                .toList();
 
     }
 }

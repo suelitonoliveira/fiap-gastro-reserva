@@ -13,17 +13,16 @@ public class MesaMapper {
                 .codMesa(mesa.getId())
                 .qtdCadeira(mesa.getQtdCadeira())
                 .codRestaurante(mesa.getRestaurante().getId())
-                .codUsuario(mesa.getUsuario().getId())
                 .build();
     }
 
-    public static Mesa toEntity(MesaDTO mesaDTO, Usuario usuario, Restaurante restaurante) {
+    public static Mesa toEntity(MesaDTO mesaDTO, Restaurante restaurante) {
         return Mesa
                 .builder()
                 .id(mesaDTO.getCodMesa())
-                .usuario(usuario)
                 .qtdCadeira(mesaDTO.getQtdCadeira())
                 .restaurante(restaurante)
                 .build();
     }
+
 }

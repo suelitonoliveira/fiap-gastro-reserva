@@ -1,8 +1,6 @@
 package br.com.fiap.gastroreserva.controller;
 
-import br.com.fiap.gastroreserva.dto.ReservaDTO;
 import br.com.fiap.gastroreserva.dto.RestauranteDTO;
-import br.com.fiap.gastroreserva.entities.Restaurante;
 import br.com.fiap.gastroreserva.services.RestauranteService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -25,7 +22,7 @@ public class RestauranteController {
 
     @PostMapping
     public ResponseEntity<?> save(@RequestBody @Valid RestauranteDTO restauranteDTO) {
-        if (service.restauranteJaExiste(restauranteDTO.nome())) {
+        if (service.restauranteJaExiste(restauranteDTO.getNome())) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Restaurante já existe");
         }
         RestauranteDTO savedRestauranteDTO = service.save(restauranteDTO);

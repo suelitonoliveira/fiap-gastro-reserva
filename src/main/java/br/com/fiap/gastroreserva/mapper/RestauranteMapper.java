@@ -1,26 +1,45 @@
 package br.com.fiap.gastroreserva.mapper;
 
+import br.com.fiap.gastroreserva.dto.MesaDTO;
+import br.com.fiap.gastroreserva.dto.ReservaDTO;
 import br.com.fiap.gastroreserva.dto.RestauranteDTO;
 import br.com.fiap.gastroreserva.entities.Restaurante;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class RestauranteMapper {
 
     public static RestauranteDTO convertToDTO(Restaurante restaurante) {
-        return new RestauranteDTO(
-                restaurante.getId(),
-                restaurante.getNome(),
-                restaurante.getMesa(),
-                restaurante.getReserva());
+        List<MesaDTO> mesas = new ArrayList<>();
+        List<ReservaDTO> reservas = new ArrayList<>();
+        if (Objects.nonNull(restaurante.getMesa())) {
+            mesas = restaurante.getMesa().stream().map(MesaMapper::mesaToMesaDTO).toList();
+        }
+
+        if (Objects.nonNull(restaurante.getReserva())) {
+            reservas = restaurante.getReserva().stream().map(ReservaMapper::toDTO).collect(Collectors.toList());
+        }
+
+        return RestauranteDTO
+                .builder()
+                .id(restaurante.getId())
+                .nome(restaurante.getNome())
+                .endereco(restaurante.getEndereco())
+                .mesa(mesas)
+                .reserva(reservas)
+                .build();
 
     }
 
     public static Restaurante toRestaurante(RestauranteDTO restauranteDTO) {
-        return new Restaurante(
-                restauranteDTO.id(),
-                restauranteDTO.nome(),
-                restauranteDTO.mesa(),
-                restauranteDTO.reserva()
-        );
+        return Restaurante
+                .builder()
+                .nome(restauranteDTO.getNome())
+                .endereco(restauranteDTO.getEndereco())
+                .build();
     }
 
 }

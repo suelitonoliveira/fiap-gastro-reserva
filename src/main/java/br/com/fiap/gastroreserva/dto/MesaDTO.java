@@ -11,9 +11,6 @@ public class MesaDTO {
     @NotNull(message = "Campo codRestaurante obrigatório")
     private Long codRestaurante;
 
-    @NotNull(message = "Campo  codUsuario obrigatório")
-    private Long codUsuario;
-
     @NotNull(message = "Campo codMesa obrigatório")
     private Long codMesa;
 

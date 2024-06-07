@@ -49,7 +49,16 @@ public class ReservaService {
 
             var mensaSelecionada = restaurante.getMesa().stream().filter(mesa -> Objects.equals(mesa.getId(), reservaDTO.getCodMesa())).findFirst();
 
+            if (mensaSelecionada.isEmpty()){
+                throw new RuntimeException(String.format("Mesa com id:%d não localizada", reservaDTO.getCodMesa()));
+            }
+
             Reserva entity = ReservaMapper.toEntity(reservaDTO, usuario, restaurante, mensaSelecionada);
+
+            boolean seExisteReserva = reservaRepository.existeReserva(entity.getUsuario().getCpf(), entity.getRestaurante().getId());
+            if (seExisteReserva){
+                throw new RuntimeException(String.format("Reserva ja existe para o usuário:%s nessa restaurante:%s , favor selecionar outro!", entity.getUsuario().getNome(), entity.getRestaurante().getNome()));
+            }
 
             Reserva reservaSalva = reservaRepository.save(entity);
 
