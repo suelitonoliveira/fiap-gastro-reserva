@@ -51,6 +51,13 @@ spring.flyway.password=
 spring.flyway.locations=classpath:db/migration
 
 ## 📖 Documentação-API
+
+foi realizado a hospedagem no azure segue link do swagger:
+https://fiap-gastro-reserva.azurewebsites.net/swagger-ui/index.html#/
+usuario:user
+senha:password
+
+
 - Segue o link do miro aonde mostramos todo os fluxos
 https://miro.com/app/board/uXjVKOlYiQw=/?share_link_id=285328862468
 - Collection postman: https://universal-crater-6079.postman.co/workspace/fiap~63b45161-f5be-4f39-8e20-86f482f27767/collection/13186621-db46a9b2-2f80-4d99-8331-ee127237e7da?action=share&creator=13186621
